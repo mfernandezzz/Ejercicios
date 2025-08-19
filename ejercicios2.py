@@ -1,32 +1,20 @@
 #crea una funcion para contar cuantos numeros de una lista son positivos y mostrar en pantalla la cantidad.
-def contar_positivos(lista):
-    contador = 0
-    for e in lista: 
-        if e > 0: #lista[e]
-            contador += 1
-    return contador
 lista = [3.2, -4, 5, -8, 9, 16, -2, -79]
-print(contar_positivos(lista))
+def contar_Positivos(lista):
+    return len([e for e in lista if e > 0])
+print(contar_Positivos(lista))
 
 #crea una funcion que cuente cuantos elementos de una lista son pares
 numeros = [3, 4, 7, 8, 15, 90, 43, 80, 33, 32]
-def contar_pares(numeros):
-    contador = 0
-    for i in numeros:
-        if i % 2 == 0: #numeros[i]
-            contador += 1
-    return contador
-print(contar_pares(numeros))
+def contar_Pares(lista):
+    return len([i for i in lista if i % 2 == 0])
+print(contar_Pares(numeros))
 
 #crea una funcion que sume los numeros pares de una lista y devuelva su suma
-numeros = [3, 4, 7, 8, 15, 90, 43, 80, 33, 32]
-def sumaPares(numeros):
-    s = 0
-    for i in numeros:
-        if i % 2 == 0:
-            s += i
-    return s
-print(sumaPares(numeros))
+numeros2 = [6, 9, 14, 16, 30, 45, 86, 40, 17, 19]
+def suma_Pares(lista):
+    return sum([i for i in lista if i % 2 == 0])
+print(suma_Pares(numeros2))
 
 #crea una funcion que reciba dos listas y que sume solamente los valores de la lista elementos cuya posicion este en la lista 
 #posiciones.
@@ -41,19 +29,16 @@ print(sumar_elementos(elementos, posiciones))
 #crear una funcion que reciba una lista y que sume solamente los valores de la lista que se encuentren en posiciones pares y que 
 #devuelva su suma.
 valores = [14, 22, 38, 46, 51, 60, 79, 88, 92, 101]
+def suma_pos_pares(valores):
+    return sum([valores[i] for i in range(0, len(valores), 2)])
+print(suma_pos_pares(valores))
+#solucion 2
 def pos_pares(valores):
     suma_de_pares = 0
     for i in range(0, len(valores), 2):
         suma_de_pares += valores[i]
     return suma_de_pares
 print(pos_pares(valores))
-#solucion 2
-def posPares(valores):
-    pares = []
-    for i in range(0, len(valores), 2):
-        pares.append(valores[i])
-    return sum(pares)
-print(posPares(valores))
 
 #crea una funcion que reciba dos numeros enteros como parametros para despues devolver una lista con el conteo de los numeros 
 #introducidos, sin contar el ultimo. Se deben contemplar los conteos regresivos.
@@ -100,9 +85,8 @@ def contar_ceros(lista):
     return lista.count(0)
 print(contar_ceros(lista_ceros))
 
-#crea una funcion valor mas indice que reciba como parametro una lista y que devuelva una lista cuyos valores sean
-#iguales al valor de sus elementos mas el indice de los mismos.
-#ejemplo lista_entrada = [7, 8, 2, 5, 3]  lista_salida = [7, 9, 4, 8, 7]
+#crea una funcion que reciba como parametro una lista y que devuelva una lista cuyos valores sean iguales al valor de sus 
+#elementos mas el indice de los mismos. Ejemplo lista_entrada = [7, 8, 2, 5, 3]  lista_salida = [7, 9, 4, 8, 7]
 #solucion 1
 numericos = [3, 8, 6, 1, 7, 4] #[3, 9, 8, 4, 11, 9]
 def valor_mas_indice(numericos):
@@ -132,13 +116,9 @@ print(suma_indices0(numericos))
 
 #crea una funcion que reciba como parametro una lista y devuelva la suma de los valores mayores a 10 y cuyos indices sean impares.
 numeros = [6, 12, 2, 14, 8, 52, 22, 9, 16, 1]
-def sumaRara(numeros):
-    rara = 0
-    for i in range(1, len(numeros), 2):#aqui se determina que se iterara solo en las posiciones impares
-        if numeros[i] > 10:
-            rara += numeros[i]
-    return rara
-print(sumaRara(numeros))
+def suma_rara(lista):
+    return sum([lista[i] for i in range(1, len(lista), 2) if lista[i] > 10])
+print(suma_rara(numeros))
 
 #crea una funcion que reciba como parametro un string y que si el largo del mismo es menor a diez, le agregue el caracter x al 
 #final tantas veces como sea necesario hasta que el largo del string sea diez.
@@ -208,16 +188,9 @@ print(intercambiar(lista_num, 1, 5))
 #crear una funcion que reciba como parametros dos listas donde una de ellas seran los indices. Despues devolver la suma 
 #de los elementos de la lista indicados por su indice. 
 listaCinco, indices = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50], [4, 6, 9]
-def sumaSeleccionados(listaCinco, indices):
-    s = 0
-    for i in indices:
-        s += listaCinco[i]
-    return s
-print(sumaSeleccionados(listaCinco, indices))
-#solucion 2
-def sumaXindices2(listaCinco, indices):
-    suma = [listaCinco[i] for i in indices]
-    return sum(suma)
+def suma_rara2(lista, indices):
+    return sum([lista[i] for i in indices])
+print(suma_rara2(listaCinco, indices))
 
 #crea una funcion que reciba como parametro una lista y que devuelva la misma lista pero que cada elemento a partir del indice 
 #dos sea igual a la suma de los dos anteriores.
@@ -260,13 +233,9 @@ print(sumar_listas_dos(lista, indices, lista2))
 
 #crea una funcion que reciba una lista como parametro y devuelva una lista que contenga solo los elementos pares de dicha lista.
 par_impar = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 22, 15]
-def pares(par_impar):
-    p = []
-    for i in par_impar:
-        if i % 2 == 0:
-            p.append(i)
-    return p
-print(pares(par_impar))
+def dev_pares(lista):
+    return [p for p in lista if p % 2 == 0]
+print(dev_pares(par_impar))
 
 #crear una funcion que reciba un parametro de tipo lista y devuelva la suma de las diferencias entre los numeros contiguos de la lista.
 numeros = [2, 5, 7, 12, 10, 15, 25, 17]
@@ -288,33 +257,17 @@ print(sumaDiferencias(numeros))
 #crea una funcion que reciba un parametro tipo lista y devuelva una lista que contenga los indices de los valores 
 #que sean menores a 0.
 lista_num = [-2, 5, 11, -4, -8, 55, -77, 32, -57, -63] #[0, 3, 4, 6, 8, 9]
-def obtener_indices(lista_num):
-    indices = []
-    for i in range(len(lista_num)):#se itera entre todos los elementos de la lista
-        if lista_num[i] < 0:#si el elemento almacenado por la variable de iteracion es menor a 0
-            indices.append(i)#se le agrega a la lista indices el valor posicional(indice) de dicho elemento
-    return indices
+def obtener_indices(lista):
+    return [i for i in range(len(lista)) if lista[i] < 0]
 print(obtener_indices(lista_num))
 
-#crea una funcion llamada eliminar_errores que reciba dos parametros de tipo lista y devuelva una
-#lista solo con los valores de la lista original sin los que se encuentren en la lista errores.
+#crea una funcion que reciba dos parametros de tipo lista y devuelva una lista solo con los valores de la lista original sin los que 
+#se encuentren en la lista errores.
 lista, errores = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20], [2, 6, 10, 14, 18]
-def eliminarErrores(lista, errores):
-    for i in lista:
-        for j in errores:
-            if j == i:
-                lista.remove(j)
-    return lista
-print(eliminarErrores(lista, errores))
+def eliminar_errores(lista, errores):
+    return [i for i in lista if i not in errores]
+print(eliminar_errores(lista, errores))
 #solucion 2
-def eliminarErrores2(lista, errores):
-    salida = []
-    for i in lista:
-        if i not in errores:
-            salida.append(i)
-    return salida
-print(eliminarErrores2(lista, errores))
-#solucion 3
 def eliminarErrores3(lista, errores):
     listaC, erroresC = set(lista), set(errores)
     return list(listaC.difference(erroresC))
@@ -342,14 +295,18 @@ def concatenar_listas(comidas, bebidas):
     return menu
 print(concatenar_listas(comidas, bebidas))
 #solucion 2
-def concatenar_listas(comidas, bebidas):
+def concatenar_listas2(comidas, bebidas):
     alimentos = []
     for i in range(len(comidas)):
         alimentos.append(comidas[i])
         alimentos.append(bebidas[i])
     return alimentos#se devuelve una lista con los elementos de las dos listas anteriores intercalados. 
 #Solo funciona si ambas listas tienen igual cantidad de elementos.
-print(concatenar_listas(comidas, bebidas))
+print(concatenar_listas2(comidas, bebidas))
+#solucion 3
+def conc_listas(comidas, bebidas):
+    return comidas + bebidas
+print(conc_listas(comidas, bebidas))
 
 #crea una funcion que reciba como parametro dos listas y devuelva un booleano dependiendo de si la primer lista contiene 
 #al menos un valor de la lista dos.
@@ -363,38 +320,182 @@ print(esta_en_lista(lista1, lista2))
 
 #Diseñar un programa que muestre el producto de los 10 primeros numeros impares.
 secuencia = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
-#[1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
-def obtenerImpares(secuencia):
-    impares = []
-    for i in secuencia:
-        if i % 2 != 0:
-            impares.append(i)
-    return impares[0:10]
-print(obtenerImpares(secuencia))
-def multiplicarImpares(impares): #654.729.075
+def obtenerImpares(lista):
+    impares = [i for i in lista if i % 2 != 0]
+    return impares[:10]
+print(obtenerImpares(secuencia)) #[1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+def obtenerProducto(lista):
     producto = 1
-    for i in impares:
+    for i in lista:
         producto *= i
     return producto
-print(multiplicarImpares(obtenerImpares(secuencia)))
+print(obtenerProducto(obtenerImpares(secuencia))) #654.729.075
 
 #Pedir 10 numeros. Mostrar la media de los numeros positivos, la media de los numeros negativos y la cantidad de ceros.
 def pedirNumeros(): #[0, 2, -8, 0, 7, -5, 0, 12, -15, 4] media positivos: 6 media negativos: -9 cant ceros: 3
     numeros = []
     while len(numeros) < 10:
-        numero = int(input('Ingrese un numero entero. El numero puede ser positivo, negativo o cero. '))
+        numero = int(input('Ingrese un numero entero, puede ser positivo. negativo o cero: '))
         numeros.append(numero)
     return numeros
-def obtenerMedia(numeros):
-    positivos, negativos = [], []
-    ceros = 0
-    for i in numeros:
-        if i > 0:
-            positivos.append(i)
-        elif i < 0:
-            negativos.append(i)
+def obtenerDatos(lista):
+    postivos = [i for i in lista if i > 0]
+    negativos = [i for i in lista if i < 0]
+    ceros = [i for i in lista if i == 0]
+    return (f'Promedio de positivos: {sum(postivos)/len(postivos)} Promedio negativos: {sum(negativos)/len(negativos)} Ceros: {len(ceros)}')
+print(obtenerDatos(pedirNumeros()))
+#Para que el codigo funcione, se debe incluir al menos un numero de cada uno (positivo, negativo y cero).
+
+#Crear una funcion que determine si un puntaje de la lista es mayor al record
+ranking1 = [30, 25, 34, 32, 28]
+ranking2 = [25, 33, 60]
+def esRecord(ranking):
+    record, supero = 35, False
+    for i in ranking:
+        if i > record:
+            supero = True
+    return supero
+print(esRecord(ranking2))
+
+#Contar cuántas veces aparece un número específico en una lista
+#Crear una función que reciba una lista de números y un número específico. La función debe contar cuántas veces aparece ese número 
+#en la lista.
+numerosEnteros, num = [32, 55, 21, 32, 88, 164, 32, 49, 190, 32], 32
+def contarAparicion(lista, numero):
+    conteo = 0
+    for i in lista:
+        if i == numero:
+            conteo += 1
+    return (f'El numero {numero} aparece {conteo} veces')
+print(contarAparicion(numerosEnteros, num))
+
+def contarAparicion2(lista, numero):
+    return (f'El numero {numero} aparece {lista.count(numero)} veces.')
+print(contarAparicion2(numerosEnteros, num))
+
+#Escribe una función que cuente cuántos números pares hay en un rango dado por el usuario
+numRango = int(input('Indique un rango: '))
+def contarPares(rango):
+    return (f'La cantidad de numeros pares en el rango dado es de: {len([i for i in range(2, rango + 1) if i % 2 == 0])}')
+print(contarPares(numRango))
+
+#Crea una funcion que le pida al usuario un numero y muestre el conteo hasta dicho numero dentro de una lista.
+numero = int(input('Ingrese la cantidad de numeros para generar un conteo: '))
+def imprimirConteo(numero):
+    return [i for i in range(1, numero + 1)]
+print(imprimirConteo(numero))
+
+#Ejercicio: crear lista de colores. Crear una lista de colores para agregar elementos a una lista vacia.
+colores = []
+def agregar_colores(lista):
+    agregar = True
+    while agregar:
+        color = str.lower(input('Color a agregar a la lista: '))
+        lista.append(color)
+        opcion = str.lower(input('¿Deseas seguir agregando colores a la lista? si/no: '))
+        if opcion == 'si':
+            agregar = True
         else:
-            ceros += 1
-    return (f'Media de positivos: {sum(positivos)/len(positivos)}, Media negativos: {sum(negativos)/len(negativos)}, Ceros: {ceros}')
-print(obtenerMedia(pedirNumeros()))
-#Para que el codigo funcione, se debe incluir al menos un numero de cada uno (positivo, negativo y/o cero).
+            agregar = False
+    return lista
+#print(agregar_colores(colores))
+
+#Ejercicio: crear una lista de juguetes y una funcion que agregue elementos a la misma.
+juguetes = []
+def agregar_juguetes(lista):
+    cantidad = int(input('Ingrese la cantidad de juguetes que quiere añadir a la lista: '))
+    while len(lista) < cantidad:
+        juguete = str.lower(input('Nombre del juguete a ingresar a la lista: '))
+        lista.append(juguete)
+    return lista
+#print(agregar_juguetes(juguetes))
+
+#Ejercicio: crear una funcion que agregue numeros a una lista hasta que el usuario escriba fin. Mostrar el mayor numero ingresado.
+numeros = [] #99 124 5 44 36.7 75
+def agregar_numeros(lista):
+    agregar = True
+    while agregar:
+        num = float(input('Ingrese un numero a agregar a la lista: '))
+        lista.append(num)
+        opcion = str.lower(input('Desea seguir agregando numeros a la lista: si/fin '))
+        if opcion == 'fin':
+            agregar = False
+    return (f'El numero mas alto ingresado es: {max(lista)}')
+#print(agregar_numeros(numeros))
+
+#Ejercicio: crear un programa que le permita a un docente ingresar todas las calificaciones de un grupo de estudiantes, una por una.
+#Cuando termine de ingresar las calificaciones, el programa debe mostrar: cantidad de calificaciones ingresadas, promedio general del
+#grupo, nota maxima y minima ingresada. El ingreso termina cuando se ingresa la palabra fin.
+calificaciones = [] #12 10 8 13 8 7 4
+def gestionar_notas(lista):
+    agregar = True
+    while agregar:
+        nota = int(input('Ingrese una nota: '))
+        if nota > 0 and nota <= 12:
+            lista.append(nota)
+        else:
+            print('La nota ingresada es incorrecta.')
+        opcion = str.lower(input('¿Seguir agregando notas a la lista? si/fin '))
+        if opcion == 'fin':
+            agregar = False
+    return (f'Cantidad de calificaciones ingresadas: {len(lista)}. Promedio del grupo: {round(sum(lista) / len(lista), 2)}. Nota minima ingresada: {min(lista)}. Nota maxima ingresada: {max(lista)}')
+#print(gestionar_notas(calificaciones))
+
+#Ejercicio: crear un programa que le permita a una persona gestionar una lista de peliculas favoritas. El programa debe crear una lista
+#llamada peliculas, agregar titulos de peliculas hasta que el usuario ingrese 'fin', mostrar cuantas peliculas existen, consultar al
+#usuario si desea eliminar una pelicula y mostrar un mensaje indicando si la pelicula fue eliminada o no fue encontrada.
+def agregar_pelicula(lista, pelicula):
+    lista.append(pelicula)
+    print(f'La pelicula {pelicula} ha sido añadida a la lista.')
+
+def cantidad_peliculas(lista):
+    print(f'Cantidad de peliculas en la lista: {len(lista)}')
+
+def eliminar_pelicula(lista, pelicula):
+    if pelicula in lista:
+        lista.remove(pelicula)
+        print(f'La pelicula {pelicula} ha sido removida de la lista')
+    else:
+        print(f'La pelicula {pelicula} no fue encontrada en la lista.')
+
+def main():
+    peliculas = []
+    while True:
+        print('Gestionador basico de peliculas')
+        print('Opciones:')
+        print('1. Agregar una pelicula a la lista')
+        print('2. Mostrar la cantidad de peliculas guardadas')
+        print('3. Eliminar una pelicula de la lista')
+        print('Ingrese la palabra fin para cerrar el Gestionador basico de peliculas')
+        opcion = input('Ingrese la opcion: ')
+        if opcion == '1':
+            pelicula = str.lower(input('Ingrese el titulo de la pelicula: '))
+            agregar_pelicula(peliculas, pelicula)
+        elif opcion == '2':
+            cantidad_peliculas(peliculas)
+        elif opcion == '3':
+            pelicula = str.lower(input('Ingrese el titulo de una pelicula a eliminar: '))
+            eliminar_pelicula(peliculas, pelicula)
+        elif opcion == 'fin':
+            break
+        else:
+            print('Opcion no encontrada.')
+    return 'Saliendo del Gestor'
+
+#print(main())
+
+#Ejercicio: Crea un programa que cree una lista llamada deportes, imprmir el primer y ultimo deporte de la lista usando indices.
+#Pedir al usuario que escriba el nombre de un deporte, si ya esta en la lista, mostrar su posicion; si no esta dicho
+#deporte, agregarlo a la lista y mostrar la misma actualizada.
+deportes = ['tenis', 'futbol', 'basquetbol', 'voleybol', 'handball']
+def variada(lista):
+    print(f'Primer elemento de la lista: {lista[0]}')
+    print(f'Ultimo elemento de la lista: {lista[-1]}')
+    consulta = str.lower(input('Ingrese el nombre de un deporte para verificar si esta en la lista: '))
+    if consulta in lista:
+        print(f'El deporte {consulta} se encuentra en la lista y su posicion es: {lista.index(consulta)}')
+    else:
+        print(f'El deporte {consulta} no se encuentra en la lista, por lo que sera agregado.')
+        lista.append(consulta)
+    return (f'La lista de deportes actualizada es: {lista}') 
+print(variada(deportes))
