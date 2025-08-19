@@ -10,8 +10,8 @@ print(division(dividendo, divisor))
 
 #crea una funcion que calcule el area de un triangulo
 def area_triangulo(base, altura):
-    return (base * altura) / 2
-base, altura = float(input('la base del triangulo: ')), float(input('la altura del triangulo: '))
+    return (f'El area del triangulo es {(base * altura) / 2}')
+base, altura = float(input('Ingrese la base del triangulo: ')), float(input('Ingrese el area del triangulo: '))
 print(area_triangulo(base, altura))
 
 #crea una funcion que realice la conversion de km a millas
@@ -42,8 +42,7 @@ print(par_impar(entero))
 primera, segunda = str.lower(input('Escriba una palabra: ')), str.lower(input('Escriba otra palabra: '))
 def esAnagrama(primera, segunda):
     primera, segunda = primera.replace(' ', ''), segunda.replace(' ', '')#se eliminan los espacios de los strings
-    primeraL, segundaL = list(primera), list(segunda)#se pasan los strings a lista
-    return (sorted(primeraL) == sorted(segundaL))#se compara si ambas listas ordenadas son iguales
+    return (sorted(primera) == sorted(segunda))#se compara si ambos strings ordenados alfabeticamente son iguales
 print(esAnagrama(primera, segunda))
 
 #crea una funcion que reciba una frase y devuelva un booleano determinando si la frase es un palindromo o no. Un palindromo es una 
@@ -76,18 +75,16 @@ else:
 
 #crea un programa que le pida al usuario(alumno) sus notas, las agregue a una lista y le devuelva su promedio. La cantidad maxima de
 #notas ingresadas debe ser 5.
-def agregarNotas():
-    notas = []
-    while len(notas) < 5:#se establece que el maximo de notas sera cinco
-        nota = int(input('Ingrese su nota: '))
-        if nota >= 1 and nota <= 12:#la nota debe tener el valor correcto
-            notas.append(nota)
+def calcular_promedio():
+    calif = []
+    while len(calif) < 5: #se establece que el maximo de notas es de cinco
+        nota = int(input('Ingrese una nota: '))
+        if nota <= 12 and nota >= 1: #la nota debe tener el valor correcto
+            calif.append(nota)
         else:
-            print('Nota incorrecta')
-    return notas
-def calcularPromedio(calificaciones):
-    return (f'Su nota promedio del curso es: {round(sum(calificaciones) / len(calificaciones))}')
-print(calcularPromedio(agregarNotas()))
+            print('Nota incorrecta. Ingrese nuevamente.')
+    return (f'Su promedio es de {sum(calif) / len(calif)}')
+print(calcular_promedio())
 
 #Crea un diccionario que contenga los nombre de 5 frutas con sus respectivos precios. Escribe la funcion que pida al usuario el 
 #nombre de una fruta y luego imprima su precio.
@@ -117,7 +114,6 @@ print(consultar_precio(frutas))
 
 #Crear un juego donde el usuario debe adivinar un numero entre 1 y 100. Con cada interaccion, se le debe decir al usuario
 #si el numero ingresado es mayo o menor al generado. El juego debe terminar cuando el usuario adivine el numero.
-import random
 numeroIngresado = int(input('Ingrese un numero entre 1 y 100: '))
 def adivinar_numero(numero):
     aleatorio = random.randint(1, 100)
@@ -147,9 +143,7 @@ print(suma2(numeros))
 #crea una funcion que reciba una cadena de texto y luego la imprima al reves
 texto = str(input('Escriba una cadena de texto: '))
 def invertir(texto):
-    texti_inv = list(texto[::-1])#se pasa a lista el string ingresado y se invierte el orden de sus caracteres
-    r = ''.join(texti_inv)#el metodo join ingresa el string invertido en la nueva variable
-    return r
+    return texto[::-1] #se invierte el texto
 print(invertir(texto))
 
 #crea una funcion que le pida al usuario cuantos numeros quiere agregar a una lista y los devuelva en orden descendente
@@ -194,20 +188,15 @@ print(buscarElemento(lista, posicion))
 
 #crea una funcion que cuente la cantidad de vocales en una cadena de texto
 frase, vocales = str.lower(input('Escriba una frase para contar sus vocales: ')), ['a', 'e', 'i', 'o', 'u']
-def contador_vocales(frase, vocales):
-    sum = 0
-    for i in frase:
-        if i in vocales:
-            sum += 1
-    return sum
-print(contador_vocales(frase, vocales))
+def contarvocales(frase, vocales):
+    return len([i for i in frase if i in vocales])
+print(f'La frase introducida cuenta con {contarvocales(frase, vocales)} vocales.')
 
 #crea una funcion que reciba un numero y calcule la suma de sus digitos
 numero = str(input('Ingrese un numero entero: '))
-def sumar_digitos(numero):
-    digitos = [int(i) for i in str(numero)]#se itera y asigna los valores dentro de la lista
-    return sum(digitos)
-print(sumar_digitos(numero))
+def sumarDigitos(numero):
+    return sum([int(i) for i in numero])
+print(f'La suma de los digitos del numero introducido es {sumarDigitos(numero)}.')
 
 #crea una funcion que calcule el numero de palabras en una cadena de texto
 cadena = str(input('Ingrese una cadena de texto: '))
@@ -216,26 +205,15 @@ def contar_palabras(cadena):
     return len(palabras)
 print(contar_palabras(cadena))
 
-#crea una funcion que solicite un email y verifique si el mismo es valido o no
-email = str.lower(input('Ingresar email: '))
-term, arroba = str.endswith(email, '.com'), '@' in email#se comprueba la existencia de @ y terminacion .com
-x = term and arroba
-def es_mail(email, term, arroba, x): #la funcion puede no tener parametros; las cuatro variables pueden ir dentro de la funcion.
-    while x == False:
-        print('Correo incorrecto')
-        email = str.lower(input('Ingresar email: '))
-        term, arroba = str.endswith(email, '.com'), '@' in email
-        x = term and arroba
-    return 'Correo correcto'
-print(es_mail(email, term, arroba, x))
-#solucion 2
+#Crea una funcion que devuelva um booleano indicando si el email ingresado es correcto o no.
+email = str.lower(input('Ingrese su correo electronico: '))
 def esEmail(email):
-    x = ('@' in email) and (str.endswith(email, '.com'))#se comprueba la existencia de @ y terminacion .com
-    while x == False:#si no hay @ o terminacion .com, se le pide al usuario que ingrese nuevamente
-        print('E-mail incorrecto. Ingrese nuevamente')
+    x = ('@' in email) and (str.endswith(email, '.com'))
+    while x == False:
+        print('Correo electronico incorrecto. Vuelva a ingresar.')
         email = str.lower(input('Ingrese su correo electronico: '))
-        x = ('@' in email) and (str.endswith(email, '.com'))
-    return (f'El E-mail {email} ha sido ingresado correctamente.')
+        x = '@' in email and str.endswith(email, '.com')
+    return (f'Correo electronico {email} ingresado correctamente.')
 print(esEmail(email))
 
 #crea una funcion que solicite una lista con numeros y los ordene en orden ascendente [28, 12, 32, 21, 77, 75, 99, 2]
@@ -368,7 +346,6 @@ print(sinonimo(palabras, p))
 lista = [0, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5]
 def frecuencia(lista):
     f = {} #diccionario nuevo
-    e = 0 #variable que obtendra la cantidad de veces que se repite un numero
     for i in lista:
         e = lista.count(i) #se cuenta la cantidad de veces que se repite un numero
         f[i]=e #el diccionario de salida almacena cada numero como clave y la cantidad de veces que se repite como valor
@@ -381,7 +358,6 @@ cadena = 'contorsion brazo brazo espalda espalda espalda pierna pierna pierna pi
 cadenaL = cadena.split() #se transforma el string a lista, donde cada elemento de la lista es una palabra
 def palabrasCount(cadenaL):
     d = {} #diccionario de salida
-    p = 0 #variable que almacena la cantidad de veces que se repite cada palabra
     for i in cadenaL:
         p = cadenaL.count(i) #se cuenta la cantidad de veces que se repite cada palabra
         d[i]=p #se guarda en el diccionario cada palabra como clave y la cantidad de veces que se repite como valor
@@ -391,21 +367,18 @@ print(palabrasCount(cadenaL))
 #Escribe un programa que tome una cadena de texto y cuente cuántas veces aparece cada letra (ignorando espacios y
 #mayúsculas). Almacena los resultados en un diccionario.
 import string
-texto = 'No me gusta Literatura y tampoco Filosofia'
-texto = texto.replace(' ', '') #elimino los espacios
-textoL = list(texto) #el texto se pasa a lista, donde cada elemento de la misma es una letra
-for i in textoL: #itero en la lista en busca de mayusculas
-    if i in list(string.ascii_uppercase): #si la variable de iteracion encuentra una mayuscula
-        textoL.remove(i) #se elimina la mayuscula
-textoN = ''.join(textoL) #se forma un nuevo string sin mayusculas ni espacios
-def letrasCount(textoN):
-    f = {}
-    e = 0
-    for i in textoN:
-        e = textoN.count(i)
-        f[i]=e #el diccionario de salida tendra cada letra como clave y su frecuencia como valor
-    return f
-print(letrasCount(textoN))
+afirm = 'No me gusta Literatura, tampoco Filosofia.'
+def apLetras(afirm):
+    cadena, salida = afirm.replace(' ', ''), {} #se eliminan los espacios del string y se declara un diccionario vacio
+    cadenaL = list(cadena)#se pasa el string a lista
+    for i in cadenaL:
+        if i not in list(string.ascii_lowercase):#si un elemento de la lista no es una letra minuscula
+            cadenaL.remove(i)#se elimina el elemento
+    for i in cadenaL:
+        x = cadenaL.count(i)#se cuenta la aparicion de cada letra
+        salida[i] = x#el diccionario de salida tendra cada letra como clave y su frecuencia como valor
+    return salida
+print(apLetras(afirm))
 
 #Dado un diccionario con nombres de estudiantes y una lista de sus calificaciones, calcula el promedio de calificaciones
 #de cada estudiante y almacena los resultados en un nuevo diccionario.
@@ -416,14 +389,13 @@ estudiantesC = {
     'Adrian': [10, 8, 7, 9, 11],
     'Kevin': [5, 2, 9, 4, 5]
 }
-calificaciones = estudiantesC.values() #variable que almacenara las listas con las notas de los estudiantes
+calificaciones = estudiantesC.values()#se extrae la lista de listas con las notas de cada estudiante
 def promedios(calificaciones):
-    c = [] #lista que almacenara los promedios de cada alumno
-    x = 0 #variable que obtendra cada promedio
-    for i in calificaciones: #la variable de iteracion itera sobre cada lista con notas
-        x = sum(i) / len(i) #obtiene la suma de los elementos dividido la cantidad de elementos (promedio)
-        c.append(x) 
-    return dict(zip(estudiantesC.keys(), c)) #se crea el diccionario
+    prom = []#lista que almacenara el promedio correspondiente a cada lista de notas
+    for i in calificaciones:#se itera en la lista de lista
+        add = sum(i) / len(i)#variable que almacena el promedio de cada lista donde itera i
+        prom.append(add)#se agrega el promedio a la lista
+    return dict(zip(estudiantesC.keys(), prom))#se crea y devuelve el diccionario, los alumnos como clave y su promedio como valor
 print(promedios(calificaciones))
 
 #Crea un diccionario con nombres de países y sus poblaciones. Escribe un programa que ordene el diccionario por poblacion
@@ -460,12 +432,12 @@ maquinaria = {
     'cortacesped': 6,
     'perforadora': 2
 }
-def combinar(vehiculos, maquinaria):
-    salida = vehiculos.copy() #variable que almacena la copia del primer diccionario
-    for c, v in maquinaria.items(): #se itera en las claves y los valores del segundo diccionario
-        if c in salida: #se comprueba si una clave se encuentra en ambos diccionarios
-            salida[c] += v #si una clave esta repetida, se suma su valor
+def combinar(dict, dict2):
+    salida = dict.copy()#se copia el primer diccionario
+    for c, v in dict2.items():#se itera en las claves y valores del segundo diccionario
+        if c in dict:#se verifica si hay claves duplicadas
+            salida[c]+= v#si una clave esta duplicada, se suma su valor
         else:
-            salida[c]=v #si la clave no esta repetida, se agrega al diccionario de salida
+            salida[c] = v#si una clave no esta duplicada, se la agrega al diccionario con su valor correspondiente
     return salida
 print(combinar(vehiculos, maquinaria))
